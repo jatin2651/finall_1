@@ -1,0 +1,86 @@
+<section id="team" class="season-detail">
+    <h4 > Head2Head Results</h4>
+	<div id="h2h"> 
+	<table class="table " border="1" >
+		<thead>
+
+			<th>Team</th>
+			<th>Win</th>
+			<th>Draw</th>
+			<th>Total Match Played</th>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid">
+				<td> {{headtohead.fixture.awayTeamName}}</td>
+				<td> {{headtohead.head2head.awayTeamWins}}</td>
+				
+				<td rowspan="2">{{headtohead.head2head.draws}}</td>
+				<td rowspan="2">{{headtohead.head2head.count}}</td>
+			</tr>
+			<tr>
+				<td>{{headtohead.fixture.homeTeamName}}</td>
+				<td>{{headtohead.head2head.homeTeamWins}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="date-match"  id="table-scroll" style="margin-bottom: 10px">
+		<div class="resultPanelRow table-responsive" *ngFor="let result of headtohead.head2head.fixtures">
+			<table class="table" border="1" >
+				<thead>
+					<th>
+						Date
+					</th>
+					<th>Matches</th>
+				</thead>
+				<tbody>
+					<tr >
+						<td >{{result.date | date:'yyyy/MM/dd'}}</td>
+						<td >
+							<span>{{result.awayTeamName}} <span>{{result.result.goalsAwayTeam}}</span></span> - <span>{{result.result.goalsHomeTeam}} <span>{{result.homeTeamName}}</span></span>
+						</td>
+					</tr>
+
+				</tbody>
+				
+			</table>
+	</div>
+	</div>
+	</section>
+	
+	<section  >
+		
+	<h3> Charts </h3>
+	<div class="container" style="border: 1px solid; width: 80%; height: 33em">
+		<h4> Head to Head</h4>
+		<div style=" width: 80%">
+	<ngx-charts-pie-chart class="container"  *ngIf = "chartdata" 
+      
+      [scheme]="colorScheme"
+      [results]="resultData"
+      [legend]="showLegend"
+      [explodeSlices]="explodeSlices"
+      [labels]="showLabels"
+      [legendTitle]="legendTitle"
+      [doughnut]="doughnut"
+      (select)="onSelect($event)">
+    </ngx-charts-pie-chart>
+</div>
+</div>
+<div class="container" style="border: 1px solid; width: 80%; height: 33em; margin-top: 10px; ">
+	<h4 style="text-align: center;"> Last Match Result</h4>
+		<div style=" width: 80%">
+		    <ngx-charts-pie-chart class="container" *ngIf = "chartdata"
+		      
+		      [scheme]="colorScheme"
+		      [results]="lastMatchResult"
+		      [legend]="showLegend"
+		      [explodeSlices]="explodeSlices"
+		      [labels]="showLabels"
+		      [doughnut]="doughnut"
+		      (select)="onSelect($event)">
+		    </ngx-charts-pie-chart>
+		</div>
+</div>
+
+</section>
